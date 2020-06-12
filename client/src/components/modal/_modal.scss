@@ -1,0 +1,32 @@
+.modal {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  @include flexItem(center, center, row);
+  z-index: 3;
+
+  .overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: $black;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .modalBody {
+    background: $white;
+    max-width: 400px;
+    min-height: 200px;
+    padding: 10px;
+    border-radius: var(--borderRds);
+
+    @media screen and (max-width: 420px) {
+      max-width: 325px;
+    }
+  }
+}

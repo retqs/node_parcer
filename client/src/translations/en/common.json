@@ -1,0 +1,37 @@
+{
+  "pageTitle": {
+    "title": "Site Parser"
+  },
+  "searchPage": {
+    "title": "Just enter your url and email and we'll send site back via ",
+    "email": "email",
+    "submit": "Get your site",
+    "error": "Invalid URL",
+    "errorEmpty": "Don't leave fields empty",
+    "example": "For example: http://name.com",
+    "hint": "What is this?",
+    "modalTitle": "This is parser from WebArchive (http://web.archive.org/)",
+    "modalBody": "This project allows you to collect sites from webArchive. The main resolution is html for pages, while urls do not change",
+    "urlPlaceholder": "Your URL",
+    "emailPlaceholder": "Your Email",
+    "fetchError": "Error while loading data",
+    "fetchSuccess": "Your request was send"
+  },
+  "nav": {
+    "searchPage": "Site parser",
+    "searchPageWA": "Site parser from WebArchive"
+  },
+  "settings": {
+    "title": "Settings",
+    "HTMLTagRow": "HTML tag before/after which requires code",
+    "toPaste": "What do you need to insert?",
+    "pasteAfter": "Paste after",
+    "pasteBefore": "Paste before",
+    "loadFromWA": "Load css/js from WebArchive",
+    "parseCSSJS": "Parse all css/js",
+    "removeCSSJS": "Remove all css/js",
+    "toHttps": "Convert to https",
+    "toHttp": "Convert to http",
+    "replace": "Replace"
+  }
+}

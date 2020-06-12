@@ -1,0 +1,70 @@
+.nav {
+  height: 50px;
+  min-width: 320px;
+  margin: 0 auto;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
+
+  .navList {
+    list-style: none;
+    @include flexItem(center, center, row);
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    &__indicator {
+      position: absolute;
+      left: 0;
+      height: 2px;
+      background: $blue;
+      width: 150px;
+      bottom: 0;
+    }
+
+    &__item {
+      font-size: 16px;
+      text-align: center;
+
+      @media screen and(max-width:420px) {
+        font-size: 14px;
+      }
+
+      &:not(:first-child) {
+        margin-left: var(--whiteSpace);
+      }
+
+      .selectLanguage {
+        outline: none;
+        cursor: pointer;
+        border: none;
+      }
+
+      &--link {
+        text-decoration: none;
+        color: $black;
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        &.current {
+          color: $blue;
+          &:before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            background: $blue;
+            height: 2px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

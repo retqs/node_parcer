@@ -1,0 +1,17 @@
+$lRed: #bc4040;
+$white: #fff;
+$grey: rgb(170, 170, 170);
+$black: #212121;
+$blue: #0066fe;
+
+:root {
+  --whiteSpace: 20px;
+  --borderRds: 5px;
+}
+
+@mixin flexItem($algn, $jst, $drct) {
+  display: flex;
+  align-items: $algn;
+  justify-content: $jst;
+  flex-direction: $drct;
+}

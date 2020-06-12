@@ -1,0 +1,20 @@
+@import './var';
+@import '../../layouts/SearchPage/searchpage';
+@import '../../components/modal/modal';
+@import '../../components/nav/nav';
+@import '../../components/searchSettings/searchSettings';
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

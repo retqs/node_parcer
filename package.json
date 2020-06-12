@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js"
   },
   "author": "retqs",
   "license": "MIT",
@@ -16,5 +16,8 @@
     "got": "^11.3.0",
     "node-downloader-helper": "^1.0.13",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
