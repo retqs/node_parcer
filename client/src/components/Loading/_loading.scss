@@ -1,0 +1,15 @@
+.loadingScreen {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: #000;
+  opacity: 0.8;
+  @include flexItem(center, center, row);
+  z-index: 10000;
+
+  &__text {
+    font-size: 2rem;
+    font-weight: 400;
+    color: $white;
+  }
+}

@@ -22,7 +22,9 @@
     "searchPageWA": "Site parser from WebArchive"
   },
   "settings": {
+    "sitemap": "Sitemap URL",
     "title": "Settings",
+    "specialId": "Special ID",
     "HTMLTagRow": "HTML tag before/after which requires code",
     "toPaste": "What do you need to insert?",
     "pasteAfter": "Paste after",
@@ -32,6 +34,7 @@
     "removeCSSJS": "Remove all css/js",
     "toHttps": "Convert to https",
     "toHttp": "Convert to http",
-    "replace": "Replace"
+    "replace": "Replace",
+    "parserDeep": "Parser Deep"
   }
 }

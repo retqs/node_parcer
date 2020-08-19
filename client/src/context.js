@@ -1,4 +1,5 @@
 import React, {createContext, useContext, useState} from 'react';
+
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
@@ -9,7 +10,10 @@ function ContextProvider({children}) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [settingsSearch, setSearchSettings] = useState({
+    sitemap: '',
+    specialId: '',
     htmlTag: '',
     content: '',
     pasteBefore: false,
@@ -20,6 +24,7 @@ function ContextProvider({children}) {
     transformToHttps: true,
     transformToHttp: false,
     replace: false,
+    parser_deep: 1,
   });
   const [fetchError, setError] = useState(null);
   const [fetchSuccess, setSuccess] = useState(null);
@@ -35,6 +40,9 @@ function ContextProvider({children}) {
     transformToHttps,
     transformToHttp,
     replace,
+    specialId,
+    sitemap,
+    parser_deep,
   } = settingsSearch;
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -42,16 +50,51 @@ function ContextProvider({children}) {
   const closeSettings = () => setIsSettingsOpen(false);
 
   const postData = async (url, email) => {
-    try {
-      const res = await axios.post(
-        `http://multiwpcms.biz.ua/admin/build&htmlTag=${htmlTag}&content=${content}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}`
-      );
-      setError(null);
-      setSuccess(t('searchPage.fetchSuccess'));
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-      setError(t('searchPage.fetchError'));
+    if (window.location.pathname.includes('webarchiveParser')) {
+      try {
+        setIsLoading(true);
+        const res = await axios.get(
+          `http://multiwpcms.biz.ua/speed_load?htmlTag=${htmlTag}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          {
+            onDownloadProgress: (progressEvent) => {
+              const process = parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              );
+
+              console.log(process);
+            },
+          }
+        );
+        setError(null);
+        setSuccess(t('searchPage.fetchSuccess'));
+
+        console.log(res);
+      } catch (error) {
+        setError(t('searchPage.fetchError'));
+      }
+    } else {
+      try {
+        setIsLoading(true);
+        const res = await axios.get(
+          `http://multiwpcms.biz.ua/speed_load_all?htmlTag=${htmlTag}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          {
+            onDownloadProgress: (progressEvent) => {
+              const process = parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              );
+
+              console.log(process);
+            },
+          }
+        );
+        setIsLoading(false);
+        setError(null);
+        setSuccess(t('searchPage.fetchSuccess'));
+
+        console.log(res);
+      } catch (error) {
+        setError(t('searchPage.fetchError'));
+      }
     }
   };
 
@@ -68,6 +111,7 @@ function ContextProvider({children}) {
         postData,
         fetchError,
         fetchSuccess,
+        isLoading,
       }}
     >
       {children}

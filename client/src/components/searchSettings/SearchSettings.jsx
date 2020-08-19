@@ -1,8 +1,9 @@
 import React, {useRef} from 'react';
-import {ReactComponent as SettingsIcon} from '../../assets/icons/settings.svg';
-import {useOfContext} from '../../context';
-import useClickOutside from '../../Utlities/useClickOutside';
+
 import {ReactComponent as CheckedIcon} from '../../assets/icons/checked.svg';
+import {ReactComponent as SettingsIcon} from '../../assets/icons/settings.svg';
+import useClickOutside from '../../Utlities/useClickOutside';
+import {useOfContext} from '../../context';
 import {useTranslation} from 'react-i18next';
 
 function SearchSettings() {
@@ -36,6 +37,50 @@ function SearchSettings() {
       </button>
 
       <div className={`settings ${isSettingsOpen ? 'open' : ''}`}>
+        <fieldset className='settings__row'>
+          <label className='settings__label' htmlFor='sitemap'>
+            {t('settings.sitemap')}
+            <input
+              id='sitemap'
+              name='sitemap'
+              type='text'
+              value={settingsSearch.sitemap}
+              onChange={handleInputChange}
+              autoComplete='off'
+            />
+          </label>
+        </fieldset>
+
+        <fieldset className='settings__row'>
+          <label className='settings__label' htmlFor='specialId'>
+            {t('settings.specialId')}
+            <input
+              id='specialId'
+              name='specialId'
+              type='text'
+              value={settingsSearch.specialId}
+              onChange={handleInputChange}
+              autoComplete='off'
+            />
+          </label>
+        </fieldset>
+
+        <fieldset className='settings__row'>
+          <label className='settings__label' htmlFor='parser_deep'>
+            {t('settings.parserDeep')} min-1 max-8
+            <input
+              id='parser_deep'
+              name='parser_deep'
+              type='number'
+              min='1'
+              max='8'
+              value={settingsSearch.parser_deep}
+              onChange={handleInputChange}
+              autoComplete='off'
+            />
+          </label>
+        </fieldset>
+
         <fieldset className='settings__row'>
           <label className='settings__label' htmlFor='htmlTag'>
             {t('settings.HTMLTagRow')}

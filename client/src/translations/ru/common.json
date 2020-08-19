@@ -22,7 +22,9 @@
     "searchPageWA": "Парсер сайтов с веб архива"
   },
   "settings": {
+    "sitemap": "Sitemap URL",
     "title": "Настройки",
+    "specialId": "Специальное ID",
     "HTMLTagRow": "HTML тег перед/после которого нужна вставка кода",
     "toPaste": "Что будем вставлять",
     "pasteAfter": "Вставить после",
@@ -32,6 +34,7 @@
     "removeCSSJS": "Убрать все css/js",
     "toHttps": "Перевести в https",
     "toHttp": "Перевести в http",
-    "replace": "Заменить"
+    "replace": "Заменить",
+    "parserDeep": "Глубина Парсинга"
   }
 }

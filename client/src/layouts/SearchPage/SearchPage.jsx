@@ -1,13 +1,14 @@
-import React, {useState, useEffect, useRef} from 'react';
-import _ from 'lodash';
-import Modal from '../../components/modal/Modal';
-import {useOfContext} from '../../context';
-import SearchSettings from '../../components/searchSettings/SearchSettings';
+import React, {useEffect, useRef, useState} from 'react';
 import {Trans, useTranslation} from 'react-i18next';
 
 import {ReactComponent as EmailIcon} from '../../assets/icons/email.svg';
+import LoadingScreen from '../../components/Loading';
+import Modal from '../../components/modal/Modal';
 import {ReactComponent as SearchIcon} from '../../assets/icons/search.svg';
+import SearchSettings from '../../components/searchSettings/SearchSettings';
 import {ReactComponent as WaveIcon} from '../../assets/icons/wave.svg';
+import _ from 'lodash';
+import {useOfContext} from '../../context';
 
 function SearchPage() {
   const {
@@ -16,6 +17,7 @@ function SearchPage() {
     postData,
     fetchError,
     fetchSuccess,
+    isLoading,
   } = useOfContext();
   const [t, i18n] = useTranslation();
 
@@ -65,6 +67,7 @@ function SearchPage() {
           body={t('searchPage.modalBody')}
         ></Modal>
       )}
+      {isLoading && <LoadingScreen></LoadingScreen>}
       <section className='container'>
         <h1 className='pageTitle'>
           {t('searchPage.title')}
