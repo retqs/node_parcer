@@ -35,6 +35,7 @@
     "toHttps": "Перевести в https",
     "toHttp": "Перевести в http",
     "replace": "Заменить",
-    "parserDeep": "Глубина Парсинга"
+    "parserDeep": "Глубина Парсинга",
+    "sitemapsHtml": "Sitemaps HTML"
   }
 }

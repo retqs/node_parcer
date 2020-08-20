@@ -35,6 +35,7 @@
     "toHttps": "Convert to https",
     "toHttp": "Convert to http",
     "replace": "Replace",
-    "parserDeep": "Parser Deep"
+    "parserDeep": "Parser Deep",
+    "sitemapsHtml": "Sitemaps HTML"
   }
 }

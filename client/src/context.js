@@ -25,6 +25,7 @@ function ContextProvider({children}) {
     transformToHttp: false,
     replace: false,
     parser_deep: 1,
+    sitemaps_html: '',
   });
   const [fetchError, setError] = useState(null);
   const [fetchSuccess, setSuccess] = useState(null);
@@ -43,18 +44,30 @@ function ContextProvider({children}) {
     specialId,
     sitemap,
     parser_deep,
+    sitemaps_html,
   } = settingsSearch;
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
   const closeSettings = () => setIsSettingsOpen(false);
 
+  const fetchPhotos = async () => {
+    try {
+      const res = await axios.get('http://multiwpcms.biz.ua/get_all_photos');
+
+      console.log(res.data);
+      if (res.data === 200) setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const postData = async (url, email) => {
     if (window.location.pathname.includes('webarchiveParser')) {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://multiwpcms.biz.ua/speed_load?htmlTag=${htmlTag}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          `http://multiwpcms.biz.ua/speed_load?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
           {
             onDownloadProgress: (progressEvent) => {
               const process = parseInt(
@@ -68,7 +81,7 @@ function ContextProvider({children}) {
         setError(null);
         setSuccess(t('searchPage.fetchSuccess'));
 
-        console.log(res);
+        if (res.status === 200) fetchPhotos();
       } catch (error) {
         setError(t('searchPage.fetchError'));
       }
@@ -76,7 +89,7 @@ function ContextProvider({children}) {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://multiwpcms.biz.ua/speed_load_all?htmlTag=${htmlTag}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          `http://multiwpcms.biz.ua/speed_load_all?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
           {
             onDownloadProgress: (progressEvent) => {
               const process = parseInt(
@@ -87,11 +100,11 @@ function ContextProvider({children}) {
             },
           }
         );
-        setIsLoading(false);
+
         setError(null);
         setSuccess(t('searchPage.fetchSuccess'));
 
-        console.log(res);
+        if (res.status === 200) fetchPhotos();
       } catch (error) {
         setError(t('searchPage.fetchError'));
       }

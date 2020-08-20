@@ -38,20 +38,6 @@ function SearchSettings() {
 
       <div className={`settings ${isSettingsOpen ? 'open' : ''}`}>
         <fieldset className='settings__row'>
-          <label className='settings__label' htmlFor='sitemap'>
-            {t('settings.sitemap')}
-            <input
-              id='sitemap'
-              name='sitemap'
-              type='text'
-              value={settingsSearch.sitemap}
-              onChange={handleInputChange}
-              autoComplete='off'
-            />
-          </label>
-        </fieldset>
-
-        <fieldset className='settings__row'>
           <label className='settings__label' htmlFor='specialId'>
             {t('settings.specialId')}
             <input
@@ -92,6 +78,22 @@ function SearchSettings() {
               onChange={handleInputChange}
               autoComplete='off'
             />
+          </label>
+        </fieldset>
+
+        <fieldset className='settings__row'>
+          <label className='settings__label' htmlFor='sitemaps_html'>
+            {t('settings.sitemapsHtml')}
+            <textarea
+              cols='30'
+              rows='10'
+              id='sitemaps_html'
+              name='sitemaps_html'
+              type='text'
+              value={settingsSearch.sitemaps_html}
+              onChange={handleInputChange}
+              spellCheck='false'
+            ></textarea>
           </label>
         </fieldset>
 
