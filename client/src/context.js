@@ -26,6 +26,7 @@ function ContextProvider({children}) {
     replace: false,
     parser_deep: 1,
     sitemaps_html: '',
+    use_wget: false,
   });
   const [fetchError, setError] = useState(null);
   const [fetchSuccess, setSuccess] = useState(null);
@@ -45,6 +46,7 @@ function ContextProvider({children}) {
     sitemap,
     parser_deep,
     sitemaps_html,
+    use_wget,
   } = settingsSearch;
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -67,7 +69,7 @@ function ContextProvider({children}) {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://multiwpcms.biz.ua/speed_load?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          `http://multiwpcms.biz.ua/speed_load?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&use_wget=${use_wget}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
           {
             onDownloadProgress: (progressEvent) => {
               const process = parseInt(
@@ -89,7 +91,7 @@ function ContextProvider({children}) {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://multiwpcms.biz.ua/speed_load_all?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
+          `http://multiwpcms.biz.ua/speed_load_all?htmlTag=${htmlTag}&sitemaps_html=${sitemaps_html}&use_wget=${use_wget}&content=${content}&parser_deep=${parser_deep}&sitemap=${sitemap}&pasteBefore=${pasteBefore}&pasteAfter=${pasteAfter}&parseCSSAndJS=${parseCSSAndJS}&loadCSSAndJSFromWebArchive=${loadCSSAndJSFromWebArchive}&removeAllCSSAndJS=${removeAllCSSAndJS}&transformToHttps=${transformToHttps}&transformToHttp=${transformToHttp}&url=${url}&email=${email}&replace=${replace}&special_id=${specialId}`,
           {
             onDownloadProgress: (progressEvent) => {
               const process = parseInt(

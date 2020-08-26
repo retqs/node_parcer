@@ -36,6 +36,7 @@
     "toHttp": "Перевести в http",
     "replace": "Заменить",
     "parserDeep": "Глубина Парсинга",
-    "sitemapsHtml": "Sitemaps HTML"
+    "sitemapsHtml": "Sitemaps HTML",
+    "usewget": "Использовать wget"
   }
 }

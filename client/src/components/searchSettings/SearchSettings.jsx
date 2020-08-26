@@ -161,6 +161,21 @@ function SearchSettings() {
         <hr />
 
         <fieldset className='settings__row'>
+          <label className='settings__label checkedIcon' htmlFor='use_wget'>
+            {t('settings.usewget')}
+            <input
+              id='use_wget'
+              name='use_wget'
+              type='checkbox'
+              value={settingsSearch.use_wget}
+              onChange={handleCheckboxChange}
+              style={{display: 'none'}}
+            />
+            {settingsSearch.use_wget && <CheckedIcon></CheckedIcon>}
+          </label>
+        </fieldset>
+
+        <fieldset className='settings__row'>
           <label
             className='settings__label checkedIcon'
             htmlFor='loadCSSAndJSFromWebArchive'
