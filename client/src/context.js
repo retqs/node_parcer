@@ -26,7 +26,7 @@ function ContextProvider({children}) {
     replace: false,
     parser_deep: 1,
     sitemaps_html: '',
-    use_wget: false,
+    use_wget: true,
   });
   const [fetchError, setError] = useState(null);
   const [fetchSuccess, setSuccess] = useState(null);
@@ -53,17 +53,6 @@ function ContextProvider({children}) {
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
   const closeSettings = () => setIsSettingsOpen(false);
 
-  const fetchPhotos = async () => {
-    try {
-      const res = await axios.get('http://multiwpcms.biz.ua/get_all_photos');
-
-      console.log(res.data);
-      if (res.data === 200) setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const postData = async (url, email) => {
     if (window.location.pathname.includes('webarchiveParser')) {
       try {
@@ -83,8 +72,9 @@ function ContextProvider({children}) {
         setError(null);
         setSuccess(t('searchPage.fetchSuccess'));
 
-        if (res.status === 200) fetchPhotos();
+        if (res.data.status == 200) setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         setError(t('searchPage.fetchError'));
       }
     } else {
@@ -97,8 +87,6 @@ function ContextProvider({children}) {
               const process = parseInt(
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               );
-
-              console.log(process);
             },
           }
         );
@@ -106,8 +94,9 @@ function ContextProvider({children}) {
         setError(null);
         setSuccess(t('searchPage.fetchSuccess'));
 
-        if (res.status === 200) fetchPhotos();
+        if (res.data.status == 200) setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         setError(t('searchPage.fetchError'));
       }
     }

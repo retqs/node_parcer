@@ -15,7 +15,7 @@
     "urlPlaceholder": "Ваша ссылка",
     "emailPlaceholder": "Ваша почта",
     "fetchError": "Ошибка во время загрузки",
-    "fetchSuccess": "Запрос отправлен"
+    "fetchSuccess": "Загрузка завершена"
   },
   "nav": {
     "searchPage": "Парсер сайтов",

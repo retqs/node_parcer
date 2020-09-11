@@ -15,7 +15,7 @@
     "urlPlaceholder": "Your URL",
     "emailPlaceholder": "Your Email",
     "fetchError": "Error while loading data",
-    "fetchSuccess": "Your request was send"
+    "fetchSuccess": "Download completed"
   },
   "nav": {
     "searchPage": "Site parser",
